@@ -3,7 +3,6 @@ import "../styles/register.css";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { connect } from "react-redux";
 import { submitAction } from "../actions/authActions";
 toast.configure();
 
@@ -96,4 +95,4 @@ const Register = props => {
   );
 };
 
-export default connect(null, { submitAction })(Register);
+export default Register;

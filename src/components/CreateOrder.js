@@ -3,7 +3,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import { createOrderAction } from "../actions/parcelActions";
-import { connect } from "react-redux";
 
 toast.configure();
 
@@ -23,7 +22,7 @@ const CreateOrder = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.createOrderAction(order);
+   createOrderAction(order);
   };
 
   return (
@@ -78,4 +77,4 @@ const CreateOrder = props => {
   );
 };
 
-export default connect(null, { createOrderAction })(CreateOrder);
+export default CreateOrder;

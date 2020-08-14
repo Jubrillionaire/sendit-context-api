@@ -6,7 +6,7 @@ import {
 } from "../actions/types";
 
 
-export default (state, action) => {
+export const parcelReducer = (state, action) => {
   switch (action.type) {
     case LOAD_PARCELS:
       return {

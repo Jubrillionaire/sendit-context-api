@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../styles/login.css";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { loginAction } from "../actions/authActions";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 
 const Login = props => {
   const [loginData, setLoginData] = useState({ email: "", password: "" });
@@ -50,4 +50,4 @@ const Login = props => {
   );
 };
 
-export default connect(null, { loginAction })(Login);
+export default Login;

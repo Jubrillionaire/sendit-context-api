@@ -15,7 +15,6 @@ import {
   setLoading,
 } from "../actions/parcelActions";
 import { FaTrashAlt } from "react-icons/fa";
-import { connect } from "react-redux";
 import "../styles/profile.css";
 
 const Profile = props => {
@@ -34,7 +33,7 @@ const Profile = props => {
   };
 
   const handleEdit = id => {
-    props.editDestinationAction(destination, id);
+    editDestinationAction(destination, id);
     setModal(false);
   };
 
@@ -159,9 +158,4 @@ const mapStateToProps = state => ({
   loading: state.profile.loading,
 });
 
-export default connect(mapStateToProps, {
-  loadParcelsAction,
-  editDestinationAction,
-  cancelParcel,
-  setLoading,
-})(Profile);
+export default Profile;
