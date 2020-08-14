@@ -4,19 +4,18 @@ import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Register from "./components/Register";
-import store from "./store";
-import { Provider } from "react-redux";
 import Login from "./components/Login";
 import CreateOrder from "./components/CreateOrder";
 import Profile from "./components/Profile";
 import { Route, Redirect } from "react-router-dom";
+import ProfileContextProvider from "./contexts/ProfileContext";
 
 const token = localStorage.getItem("token");
 
 const App = () => {
   return (
-    <Provider store={store}>
-      {/* <NavBar /> */}
+  <ProfileContextProvider>
+       <NavBar /> 
       <Route
         exact
         path="/"
@@ -60,7 +59,7 @@ const App = () => {
         }}
       />
       <Footer />
-    </Provider>
+      </ProfileContextProvider>
   );
 };
 

@@ -5,13 +5,8 @@ import {
   LOADING,
 } from "../actions/types";
 
-const initialState = {
-  parcels: [],
-  loading: false,
-  errorMsg: "",
-};
 
-export default (state = initialState, action) => {
+export default (state, action) => {
   switch (action.type) {
     case LOAD_PARCELS:
       return {
