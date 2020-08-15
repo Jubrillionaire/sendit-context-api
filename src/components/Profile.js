@@ -23,7 +23,6 @@ const Profile = props => {
   }, []);
 
 
-  console.log(parcels)
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [destination, setDestination] = useState("");
 

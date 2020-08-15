@@ -59,7 +59,6 @@ const ParcelContextProvider = ({children}) => {
             }),
           });
           const data = await response.json();
-          console.log(data);
           if (data.msg) {
             toast.success(data.msg);
           }
@@ -89,7 +88,7 @@ const ParcelContextProvider = ({children}) => {
               payload: "sorry, unable to fetch parcels",
             });
           }
-          console.log(data);
+    
           data.sort((a, b) => a.id - b.id);
           dispatch({
             type: LOAD_PARCELS,
