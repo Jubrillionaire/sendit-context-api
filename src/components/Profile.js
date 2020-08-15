@@ -42,7 +42,7 @@ const Profile = props => {
   };
 
   const handleCancel = id => {
-    props.cancelParcel(id);
+    cancelParcel(id);
   };
 
   const { buttonLabel, className } = props;
