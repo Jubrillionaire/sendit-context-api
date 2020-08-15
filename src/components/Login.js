@@ -4,10 +4,8 @@ import "../styles/login.css";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { AuthContext } from "../contexts/AuthContext";
 
-
 const Login = () => {
-
-  const {loginAction} = useContext(AuthContext)
+  const { loginAction } = useContext(AuthContext);
   const [loginData, setLoginData] = useState({ email: "", password: "" });
 
   const handleChange = e => {

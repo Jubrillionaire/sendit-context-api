@@ -14,8 +14,7 @@ const CreateOrder = props => {
     recipientNo: "",
   };
 
-  const {createOrderAction} = useContext(ParcelContext)
-
+  const { createOrderAction } = useContext(ParcelContext);
 
   const [order, setOrder] = useState(orderDetails);
 
@@ -25,7 +24,7 @@ const CreateOrder = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-   createOrderAction(order);
+    createOrderAction(order);
   };
 
   return (

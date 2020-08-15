@@ -1,10 +1,4 @@
-import {
-  LOAD_PARCELS,
-  FETCH_SUCCESS,
-  FETCH_FAILURE,
-  LOADING,
-} from "./types";
-
+import { LOAD_PARCELS, FETCH_SUCCESS, FETCH_FAILURE, LOADING } from "./types";
 
 export const reducer = (state, action) => {
   switch (action.type) {

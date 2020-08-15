@@ -13,15 +13,21 @@ import {
 } from "reactstrap";
 
 const Profile = props => {
-
-  const {loadParcelsAction, editDestinationAction, cancelParcel, setLoading, loading, parcels, errMsg} = useContext(ParcelContext)
+  const {
+    loadParcelsAction,
+    editDestinationAction,
+    cancelParcel,
+    setLoading,
+    loading,
+    parcels,
+    errMsg,
+  } = useContext(ParcelContext);
   let subtitle;
 
   useEffect(() => {
     loadParcelsAction();
     setLoading();
   }, []);
-
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [destination, setDestination] = useState("");
@@ -45,51 +51,53 @@ const Profile = props => {
 
   const toggle = () => setModal(!modal);
 
-  const table = parcels && parcels.map(data => {
-    return (
-      <tbody key={data.id}>
-        <tr>
-          <span>
-            <Button color="danger" onClick={toggle}>
-              edit destination
-              <Modal isOpen={modal} toggle={toggle} className={className}>
-                <ModalHeader toggle={toggle}>
-                  Please enter A preferred destination
-                </ModalHeader>
-                <ModalBody>
-                  <form onSubmit={() => handleEdit(data.id)}>
-                    <Label style={{ marginRight: 20 }}>Destination:</Label>
-                    <input type="text" onChange={handleChange} />
-                  </form>
-                </ModalBody>
-                <ModalFooter>
-                  <Button color="primary" onClick={() => handleEdit(data.id)}>
-                    Submit
-                  </Button>{" "}
-                  <Button color="secondary" onClick={toggle}>
-                    Cancel
-                  </Button>
-                </ModalFooter>
-              </Modal>
-            </Button>
-          </span>
-          <th scope="row">{data.id}</th>
-          <td>{data.pickup_location}</td>
-          <td>{data.destination}</td>
-          <td>{data.recipient_name}</td>
-          <td>{data.recipient_phone_no}</td>
-          <td>{data.status}</td>
-          <button
-            disabled={data.status === "cancelled" ? true : false}
-            onClick={() => handleCancel(data.id)}
-            className="btn btn-danger p-1 pri"
-          >
-            <FaTrashAlt />
-          </button>
-        </tr>
-      </tbody>
-    );
-  });
+  const table =
+    parcels &&
+    parcels.map(data => {
+      return (
+        <tbody key={data.id}>
+          <tr>
+            <span>
+              <Button color="danger" onClick={toggle}>
+                edit destination
+                <Modal isOpen={modal} toggle={toggle} className={className}>
+                  <ModalHeader toggle={toggle}>
+                    Please enter A preferred destination
+                  </ModalHeader>
+                  <ModalBody>
+                    <form onSubmit={() => handleEdit(data.id)}>
+                      <Label style={{ marginRight: 20 }}>Destination:</Label>
+                      <input type="text" onChange={handleChange} />
+                    </form>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button color="primary" onClick={() => handleEdit(data.id)}>
+                      Submit
+                    </Button>{" "}
+                    <Button color="secondary" onClick={toggle}>
+                      Cancel
+                    </Button>
+                  </ModalFooter>
+                </Modal>
+              </Button>
+            </span>
+            <th scope="row">{data.id}</th>
+            <td>{data.pickup_location}</td>
+            <td>{data.destination}</td>
+            <td>{data.recipient_name}</td>
+            <td>{data.recipient_phone_no}</td>
+            <td>{data.status}</td>
+            <button
+              disabled={data.status === "cancelled" ? true : false}
+              onClick={() => handleCancel(data.id)}
+              className="btn btn-danger p-1 pri"
+            >
+              <FaTrashAlt />
+            </button>
+          </tr>
+        </tbody>
+      );
+    });
   if (loading) {
     return (
       <Spinner
@@ -107,24 +115,28 @@ const Profile = props => {
       <div className="card" style={{ width: "20rem" }}>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
-            <h5>Number of orders: { parcels && parcels.length} </h5>{" "}
+            <h5>Number of orders: {parcels && parcels.length} </h5>{" "}
           </li>
           <li className="list-group-item">
             <h5>
               Orders in Transit:{" "}
-              { parcels && parcels.filter(data => data.status === "in transit").length}{" "}
+              {parcels &&
+                parcels.filter(data => data.status === "in transit")
+                  .length}{" "}
             </h5>
           </li>
           <li className="list-group-item">
             <h5>
               Delivered:{" "}
-              { parcels && parcels.filter(data => data.status === "delivered").length}{" "}
+              {parcels &&
+                parcels.filter(data => data.status === "delivered").length}{" "}
             </h5>
           </li>
           <li className="list-group-item">
             <h5>
               Cancelled Orders:{" "}
-              { parcels && parcels.filter(data => data.status === "cancelled").length}
+              {parcels &&
+                parcels.filter(data => data.status === "cancelled").length}
             </h5>
           </li>
         </ul>
@@ -149,6 +161,5 @@ const Profile = props => {
     </div>
   );
 };
-
 
 export default Profile;

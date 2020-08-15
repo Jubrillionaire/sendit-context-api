@@ -17,7 +17,7 @@ const Register = props => {
 
   const [user, setUser] = useState(details);
 
-  const {registerAction} = useContext(AuthContext)
+  const { registerAction } = useContext(AuthContext);
 
   const handleChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value });
