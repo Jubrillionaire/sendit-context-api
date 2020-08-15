@@ -3,10 +3,10 @@ import {
   FETCH_SUCCESS,
   FETCH_FAILURE,
   LOADING,
-} from "../actions/types";
+} from "./types";
 
 
-export const parcelReducer = (state, action) => {
+export const reducer = (state, action) => {
   switch (action.type) {
     case LOAD_PARCELS:
       return {

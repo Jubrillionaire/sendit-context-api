@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Spinner from "react-bootstrap/Spinner";
+import { FaTrashAlt } from "react-icons/fa";
+import "../styles/profile.css";
+import { ParcelContext } from "../contexts/ParcelContext";
 import {
   Button,
   Modal,
@@ -8,23 +11,20 @@ import {
   ModalFooter,
   Label,
 } from "reactstrap";
-import {
-  loadParcelsAction,
-  editDestinationAction,
-  cancelParcel,
-  setLoading,
-} from "../actions/parcelActions";
-import { FaTrashAlt } from "react-icons/fa";
-import "../styles/profile.css";
 
 const Profile = props => {
+
+  const {loadParcelsAction, editDestinationAction, cancelParcel, setLoading, parcels} = useContext(ParcelContext)
+
   let subtitle;
 
   useEffect(() => {
-    props.loadParcelsAction();
-    props.setLoading();
+    loadParcelsAction();
+    setLoading();
   }, []);
 
+
+  console.log(parcels)
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [destination, setDestination] = useState("");
 
@@ -47,8 +47,7 @@ const Profile = props => {
 
   const toggle = () => setModal(!modal);
 
-  const profile = props.profile;
-  const table = profile.map(data => {
+  const table = parcels.map(data => {
     return (
       <tbody key={data.id}>
         <tr>
@@ -110,29 +109,29 @@ const Profile = props => {
       <div className="card" style={{ width: "20rem" }}>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
-            <h5>Number of orders: {profile.length} </h5>{" "}
+            <h5>Number of orders: {parcels.length} </h5>{" "}
           </li>
           <li className="list-group-item">
             <h5>
               Orders in Transit:{" "}
-              {profile.filter(data => data.status === "in transit").length}{" "}
+              {parcels.filter(data => data.status === "in transit").length}{" "}
             </h5>
           </li>
           <li className="list-group-item">
             <h5>
               Delivered:{" "}
-              {profile.filter(data => data.status === "delivered").length}{" "}
+              {parcels.filter(data => data.status === "delivered").length}{" "}
             </h5>
           </li>
           <li className="list-group-item">
             <h5>
               Cancelled Orders:{" "}
-              {profile.filter(data => data.status === "cancelled").length}
+              {parcels.filter(data => data.status === "cancelled").length}
             </h5>
           </li>
         </ul>
       </div>
-      <div className="profile">
+      <div className="parcels">
         <table className="table">
           <thead className="thead-dark">
             <tr>
@@ -153,9 +152,5 @@ const Profile = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  profile: state.profile.parcels,
-  loading: state.profile.loading,
-});
 
 export default Profile;

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../styles/register.css";
 import { Form, FormGroup, Label, Input } from "reactstrap";
+import { AuthContext } from "../contexts/AuthContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { submitAction } from "../actions/authActions";
 toast.configure();
 
 const Register = props => {
@@ -16,6 +16,8 @@ const Register = props => {
   };
 
   const [user, setUser] = useState(details);
+
+  const {registerAction} = useContext(AuthContext)
 
   const handleChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value });

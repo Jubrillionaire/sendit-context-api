@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import "../styles/login.css";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { loginAction } from "../actions/authActions";
-// import { connect } from "react-redux";
+import { AuthContext } from "../contexts/AuthContext";
 
-const Login = props => {
+
+const Login = () => {
+
+  const {loginAction} = useContext(AuthContext)
   const [loginData, setLoginData] = useState({ email: "", password: "" });
 
   const handleChange = e => {
@@ -14,7 +16,7 @@ const Login = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.loginAction(loginData);
+    loginAction(loginData);
   };
 
   const { email, password } = loginData;

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Form, FormGroup, Label, Input } from "reactstrap";
-import { createOrderAction } from "../actions/parcelActions";
+import { ParcelContext } from "../contexts/ParcelContext";
 
 toast.configure();
 
@@ -13,6 +13,9 @@ const CreateOrder = props => {
     recipientName: "",
     recipientNo: "",
   };
+
+  const {createOrderAction} = useContext(ParcelContext)
+
 
   const [order, setOrder] = useState(orderDetails);
 
