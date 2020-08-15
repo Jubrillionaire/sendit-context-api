@@ -14,8 +14,7 @@ import {
 
 const Profile = props => {
 
-  const {loadParcelsAction, editDestinationAction, cancelParcel, setLoading, parcels} = useContext(ParcelContext)
-
+  const {loadParcelsAction, editDestinationAction, cancelParcel, setLoading, loading, parcels, errMsg} = useContext(ParcelContext)
   let subtitle;
 
   useEffect(() => {
@@ -47,7 +46,7 @@ const Profile = props => {
 
   const toggle = () => setModal(!modal);
 
-  const table = parcels.map(data => {
+  const table =  parcels.map(data => {
     return (
       <tbody key={data.id}>
         <tr>
@@ -92,7 +91,7 @@ const Profile = props => {
       </tbody>
     );
   });
-  if (props.loading) {
+  if (loading) {
     return (
       <Spinner
         className="spinner"
@@ -109,24 +108,24 @@ const Profile = props => {
       <div className="card" style={{ width: "20rem" }}>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
-            <h5>Number of orders: {parcels.length} </h5>{" "}
+            <h5>Number of orders: { parcels.length} </h5>{" "}
           </li>
           <li className="list-group-item">
             <h5>
               Orders in Transit:{" "}
-              {parcels.filter(data => data.status === "in transit").length}{" "}
+              { parcels.filter(data => data.status === "in transit").length}{" "}
             </h5>
           </li>
           <li className="list-group-item">
             <h5>
               Delivered:{" "}
-              {parcels.filter(data => data.status === "delivered").length}{" "}
+              { parcels.filter(data => data.status === "delivered").length}{" "}
             </h5>
           </li>
           <li className="list-group-item">
             <h5>
               Cancelled Orders:{" "}
-              {parcels.filter(data => data.status === "cancelled").length}
+              { parcels.filter(data => data.status === "cancelled").length}
             </h5>
           </li>
         </ul>

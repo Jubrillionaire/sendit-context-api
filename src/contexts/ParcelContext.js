@@ -16,7 +16,8 @@ export const ParcelContext = createContext();
 
 const ParcelContextProvider = ({children}) => {
 
-    const [state, dispatch] = useReducer(reducer, initialState)
+
+    const [state, dispatch] = useReducer(reducer, [initialState])
 
     const cancelParcel = async id => {
         try {
@@ -137,7 +138,7 @@ const ParcelContextProvider = ({children}) => {
       };
     
     return (
-       <ParcelContext.Provider value={{state, loadParcelsAction, editDestinationAction, cancelParcel, setLoading, createOrderAction }}>
+       <ParcelContext.Provider value={{parcels: state.parcels, loading: state.loading, errMsg: state.errMsg, loadParcelsAction, editDestinationAction, cancelParcel, setLoading, createOrderAction }}>
            {children}
        </ParcelContext.Provider>
     )
